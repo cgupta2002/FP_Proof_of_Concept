@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Proof of Concept {% endblock %}
+{% block content%}
+<main class="d-inline-flex p-5 align-items-end">
+    <div class="container my-5">
+        <div class="text-center">
+            <h1 class="display-4 font-weight-bold">Proof of Concept</h1>
+        </div>
+        <br>
+        <br>
+        
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <a href="{{ url_for('profile') }}" class="btn btn-info btn-lg w-100 shadow">
+                    <i style='position:relative; right:5px;top:2px;' class="fas fa-user mr-2"></i> <b>Your Profile</b>
+                </a>
+            </div>
+        </div>
+    </div>       
+</main>
+
+{% endblock %}

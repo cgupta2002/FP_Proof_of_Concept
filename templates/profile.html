@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+{% block content%}
+<main class="d-inline-flex p-5 align-items-end">
+    <div class="container col-8">
+        <div class="row">
+            <div class="profile-card">
+            {% if user['profile_image']%}
+                <div class="profile-image-container">
+                    <img src="{{url_for('static', filename='images/'+user['profile_image'])}}" alt="Profile Image" class="profile-image">
+                </div>
+            {% endif %}
+                <div class="profile-info">
+                    <h2>{{user['name']}}</h2>                        
+                <div class="container">
+                    <div class="row">
+                        <p> <b>Email:</b>{{user['email']}} </p> 
+                    </div>
+                    <div class="row">
+                        <p><b>Branch:</b> {{user['branch']}}</p>
+                    </div>
+                    <div class="row justify-content-center">
+                    
+                </div>
+                </div>
+               
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
