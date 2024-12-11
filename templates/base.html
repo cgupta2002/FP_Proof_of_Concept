@@ -29,6 +29,14 @@
               <li class="nav-item">
                 <a class="nav-link "  href="{{url_for('profile')}}">My Profile</a>
               </li>
+              {% if user_id %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('alerts')}}"> Service Alerts</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('analytics')}}"> Real-Time Analytics</a>
+                </li>                
+              {% endif %}
             </ul>
             </div>
             <div class="collapse navbar-collapse">
@@ -73,7 +81,7 @@
         {% block content %} {% endblock %}
     <footer class="footer mt-auto py-3 bg-light fixed-bottom">
         <div class="container.b">
-          <span class="text-muted"> <i>Team Joy (Chirayu Gupta, Anitha Sharma, Joe Utagawa, Elizabeth Lara) &copy; 2024 </i></span>
+          <span class="text-muted"> <i>Team 9 (Chirayu Gupta, Katie Augsburger, Clayton Blazek, Natalie Frank) &copy; 2024 </i></span>
       </div>
       </footer>
   

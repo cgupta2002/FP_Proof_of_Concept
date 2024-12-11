@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-{% block title %} Home {% endblock %}
+{% block title %} Profile {% endblock %}
 {% block content%}
 <main class="d-inline-flex p-5 align-items-end">
     <div class="container col-8">
         <div class="row">
+            {% if user_id %}
             <div class="profile-card">
             {% if user['profile_image']%}
                 <div class="profile-image-container">
@@ -26,7 +27,16 @@
                
                 </div>
             </div>
+            {% else %}
+            <p> You must be logged in to view this page.</p>
+            <div class="col-4">
+            <a class="btn btn-primary" href="{{url_for('login')}}"> Log In</a>
+        </div>
         </div>
     </div>
 </main>
+
+
+
+{% endif %}
 {% endblock %}

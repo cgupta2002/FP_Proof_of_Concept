@@ -130,19 +130,22 @@ class User:
             conn.close()
         return ListOfDictionaries
     
+    @classmethod
     def getUser(username):
         users = User.getAllUsers()
         for user in users:
             if user['username'] == username:
                 return user
     
-    def getUserByID(user_id):
+    @classmethod
+    def getUserByID(cls, user_id):
         users = User.getAllUsers()
         for user in users:
             if user['user_id'] == user_id:
                 return user
-            
-    def getUserByName(name):
+
+    @classmethod
+    def getUserByName(cls, name):
         users = User.getAllUsers()
         for user in users:
             if user['name'] == name:

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Dealers {% endblock %}
+{% block content%}
+<main class="d-inline-flex p-5 align-items-end">
+    <div class="container">
+        <div class="row">
+            {% for dealer in dealers %}
+            <div class="col-md-3 mb-4">
+                <a href="{{ url_for('dealer', dealer_id=dealer['dealer_id']) }}" class="text-decoration-none text-dark">
+                <div class="card h-100">
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">{{ dealer['name'] }}</h5>
+                        <p class="card-text">
+                            <strong>Address:</strong> {{ dealer['address'] }}<br>
+                            <strong>Point of Contact:</strong> {{ dealer['poc_name'] }}<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% endblock %}

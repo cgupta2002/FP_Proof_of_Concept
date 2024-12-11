@@ -1,11 +1,12 @@
 from flask import Flask, render_template, url_for, request, redirect, flash, session
 from werkzeug.utils import secure_filename
 from users import User
+from dealers import Dealer
 import os
 from datetime import datetime, date
 
 app = Flask(__name__)
-app.secret_key = '2bshd9ei3nd40fk'
+app.secret_key = '09safkj3784hjfrk9'
 app.config['UPLOAD_FOLDER'] = 'static/images'
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
 
@@ -17,6 +18,37 @@ def index():
     user_id = session.get('user_id')
     user = User.getUserByID(user_id)
     return render_template('index.html', user=user, user_id=user_id)
+
+@app.route('/dealers')
+def dealers():
+    user_id = session.get('user_id')
+    user = User.getUserByID(user_id)
+    dealers = Dealer.getAllDealers()
+    return render_template('dealers.html', user=user, user_id=user_id, dealers = dealers)
+
+
+@app.route('/alerts')
+def alerts():
+    user_id = session.get('user_id')
+    user = User.getUserByID(user_id)
+    return render_template('alerts.html', user=user, user_id=user_id)
+
+@app.route('/analytics')
+def analytics():
+    user_id = session.get('user_id')
+    user = User.getUserByID(user_id)
+    return render_template('analytics.html', user=user, user_id=user_id)
+
+
+@app.route('/dealers/<int:dealer_id>')
+def dealer(dealer_id=None):
+    user_id = session.get('user_id')
+    user = User.getUserByID(user_id)
+    dealers = Dealer.getAllDealers()
+    for item in dealers:
+        if item['dealer_id'] == dealer_id:
+            dealer = item
+    return render_template('dealer.html', user=user, user_id=user_id, dealer=dealer)
 
 @app.route('/profile')
 def profile():

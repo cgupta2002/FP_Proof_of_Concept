@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} {{dealer['name']}} Details{% endblock %}
+{% block content%}
+<main class="d-inline-flex p-5 align-items-end">
+    <div class="container">
+        <div class="card col-6">
+            <div class="card-body">
+                <h2 class="card-title">{{ dealer['name'] }}</h2>
+                <p class="card-text"><strong>Address:</strong> {{ dealer['address'] }}</p>
+                <p class="card-text"><strong>Point of Contact Details</strong> </p>
+                <p class="card-text"><strong>Name:</strong> {{ dealer['poc_name'] }}</p>
+                <p class="card-text"><strong>Phone Number:</strong> {{ dealer['poc_phone'] }}</p>
+                <p class="card-text"><strong>Email:</strong> {{ dealer['poc_email'] }}</p>
+
+            </div>
+            <div class="card-body">
+                <h1> Insert Tableau Data Here</h1>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="{{ url_for('dealers') }}" class="btn btn-secondary">Back to Dealer List</a>
+            
+           
+    </div>
+    </div>
+</main>
+
+{% endblock %}
