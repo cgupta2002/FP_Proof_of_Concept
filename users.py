@@ -131,7 +131,7 @@ class User:
         return ListOfDictionaries
     
     @classmethod
-    def getUser(username):
+    def getUser(cls, username):
         users = User.getAllUsers()
         for user in users:
             if user['username'] == username:

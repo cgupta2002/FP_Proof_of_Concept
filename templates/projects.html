@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} Projects {% endblock %}
+{% block content%}
+<main class="d-inline-flex p-5 align-items-end">
+    <div class="container">
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-md-3 mb-4">
+                <a href="{{ url_for('project', project_id=project['project_id']) }}" class="text-decoration-none text-dark">
+                <div class="card h-100">
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project['name'] }}</h5>
+                        <p class="card-text">
+                            <strong>Location:</strong> {{ project['location'] }}<br>
+                            <strong>Point of Contact:</strong> {{ project['poc_name'] }}<br>
+                            <strong>Estimated End Date:</strong> {{project['proj_end']}} <br>
+                            <strong>Status:</strong>
+                            {% if project['status'] == 'On Time' %}
+                            <b style="color:green;"> On Time</b>
+                            {% elif project['status'] == 'Delayed' %}
+                            <b style="color:red;"> Delayed</b>
+                            {% elif project['status'] == 'At Risk' %}
+                            <b style="color:gold;"> At Risk</b>
+                            {% else %}
+                            <b style="color:gray;"> {{project['status']}}</b>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% endblock %}

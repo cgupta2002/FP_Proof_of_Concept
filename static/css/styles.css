@@ -88,7 +88,7 @@ th.a {
 }
 
 i.fas {
-    color: #f9cb25 !important;
+    color: #f36c24 !important;
     font-size: 30px !important;
 }
 
@@ -148,4 +148,61 @@ i.far {
 
 .container.b {
     margin-top: 0px !important;
+}
+
+table, th, td{
+    border: 1px solid #000000 !important;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Navbar Styling */
+.navbar {
+    background: linear-gradient(to bottom, #77787b, #f36c24) !important; 
+    color: white !important;
+    height: 10% !important;
+}
+
+/* Fix label color */
+label.a {
+    color: white !important;  /* Keep label color white */
+    padding: 3px !important;
+    display: inline-block !important;
+}
+
+input.a {
+    width: 200px !important;
+    padding: 1px !important;
+}
+
+.navbar-nav {
+    display: flex !important;
+    justify-content: center !important;  /* Center the navbar items */
+}
+
+.navbar-toggler {
+    border-color: white !important;  /* Make toggler icon color white */
+}
+
+.navbar-toggler-icon {
+    background-color: white !important;  /* Make toggler icon color white */
+}
+
+/* Button primary styling */
+.btn-primary {
+    background-color: #77787b !important;  /* Secondary color */
+    border-color: #77787b !important;  /* Secondary color */
+}
+
+/* Additional styling for the navbar items */
+.navbar-nav .nav-link {
+    color: white !important;  /* Ensure nav links are white */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f36c24 !important;  /* Change to primary color on hover */
+}
+
+.material-symbols-outlined{
+    color: #f36c24 !important;
 }

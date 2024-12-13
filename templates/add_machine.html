@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %} 
+  {% if status == 'ADD-MACHINE'%}
+  Add Machine
+  {% elif status == 'EDIT' %}
+  Edit Machine
+{% endif %}
+{% endblock %}
+{% block content%}
+
+
+{% if status == 'ADD-MACHINE'%}
+
+    <main class="d-inline-flex p-5 align-items-end">
+        <div class="container p-5">
+          <form id="form" action="{{url_for('add_machine', status='ADD-MACHINE')}}" method="POST">
+          <div class="row">
+              <div class="col-2" style="text-align:right;">
+                <label class="a" for="machine_id">Machine ID (M<i>XXX</i>):</label>
+                <label class="a" for="name">Machine Name:</label> <br>
+                <label class="a" for="type">Type:</label><br>
+                <label class="a" for="status">Status:</label><br>
+                <label class="a" for="notes">Notes (Optional):</label><br>
+              </div>
+              <div class="col-9">
+              <input class="a" type="text" id="machine_id" name="machine_id" required pattern="M\d{3}">  <br>
+              <input class="a" type="text" id="name" name="name" required><br>
+              <input class="a" type="text" id="type" name="type" required> <br>
+              <select class="a" id="status" name="status" required>
+                <option value="Operational">Operational</option>
+                <option value="Maintenance Required">Maintenance Required</option>
+                <option value="Out of Service">Out of Service</option>
+              </select><br>
+              <input class="a" type="text" id="notes" name="notes">
+              </div>
+              <div class="text-center">
+                <button class='btn btn-primary' type="submit" value="Submit">Submit</button>
+                <button class='btn btn-secondary' type="reset" value="Reset">Reset</button>
+            </div>  
+
+            </div>
+
+
+          </form>
+
+          {% elif status == 'EDIT-MACHINE'%}
+
+          <main class="d-inline-flex p-5 align-items-end">
+            <div class="container p-5">
+              <form id="form" action="{{url_for('edit_machine', machine_id=machine['machine_id'])}}" method="POST">
+              <div class="row">
+                  <div class="col-2" style="text-align:right;">
+                    <label class="a" for="machine_id">Machine ID (M<i>XXX</i>):</label>
+                    <label class="a" for="name">Machine Name:</label> <br>
+                    <label class="a" for="type">Type:</label><br>
+                    <label class="a" for="status">Status:</label><br>
+                    <label class="a" for="notes">Notes (Optional):</label><br>
+                  </div>
+                  <div class="col-9">
+                  <input class="a" type="text" id="machine_id" name="machine_id" required pattern="M\d{3}" value="{{ machine['machine_id'] }}" readonly>  <br>
+                  <input class="a" type="text" id="name" name="name" required value="{{ machine['name'] }}"><br>
+                  <input class="a" type="text" id="type" name="type" required value="{{ machine['type'] }}"> <br>
+                  <select class="a" id="status" name="status" required>
+                    <option value="Operational" {% if machine['status'] == 'Operational' %}selected{% endif %}>Operational</option>
+                    <option value="Maintenance Required" {% if machine['status'] == 'Maintenance Required' %}selected{% endif %}>Maintenance Required</option>
+                    <option value="Out of Service" {% if machine['status'] == 'Out of Service' %}selected{% endif %}>Out of Service</option>
+                  </select> <br>
+                  <input class="a" type="text" id="notes" name="notes" value="{{ machine['notes'] }}">
+                  </div>
+                  <div class="text-center">
+                    <button class='btn btn-primary' type="submit" value="Submit">Submit</button>
+                    <button class='btn btn-secondary' type="reset" value="Reset">Reset</button>
+                </div>  
+    
+                </div>
+    
+    
+              </form>
+
+          {% endif %}
+ 
+          <script>
+            function validatePassword() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (password !== confirmPassword) {
+                errorMessage.textContent = "Passwords do not match!";
+                return false; 
+            }
+            errorMessage.textContent = "";
+            return true; 
+          }
+        </script>
+  
+
+          </div>
+
+    </main>
+{% endblock %}
+
+
+</html>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %} {{project['name']}} Details{% endblock %}
+{% block content%}
+<main class="d-inline-flex p-5 align-items-end">
+    <div class="container">
+        <div class="card col-6">
+            <div class="card-body">
+                <h2 class="card-title">{{ project['name'] }}</h2>
+                <p class="card-text"><strong>Location:</strong> {{ project['location'] }}</p>
+                <p class="card-text"><strong>Start Date:</strong> {{project['start_date']}}</p>
+                <p class="card-text"><strong>Estimated End Date:</strong> {{project['proj_end']}}</p>
+                <p class="card-text"><strong>Budget:</strong> ${{ project['budget'] }}</p>
+                <p class="card-text"><strong>Current Expenditures:</strong> ${{ project['curr_exp'] }}
+                {% if budget_difference > 0 %}
+                <b style="color:green;"> $({{budget_difference}})</b>
+                {% elif budget_difference == 0 %}
+                <b style="color:yellow;"> $({{budget_difference}})</b>
+                {% else %}
+                <b style="color:red;"> $({{budget_difference}})</b></p>
+
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <strong>Point of Contact Information:</strong>
+                <p class="card-text"><strong>Name:</strong> {{project['poc_name']}}</p>
+                <p class="card-text"><strong>Email:</strong> {{project['poc_email']}}</p>
+                <p class="card-text"><strong>Phone Number:</strong> {{project['poc_phone']}}</p>
+
+            </div>
+
+            <div class="card-body">
+                <h1> Insert Tableau Data Here</h1>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="{{ url_for('projects') }}" class="btn btn-secondary">Back to Project List</a>
+            
+           
+    </div>
+    </div>
+</main>
+
+{% endblock %}
