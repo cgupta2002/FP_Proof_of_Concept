@@ -3,8 +3,9 @@
 {% block content%}
 <main class="d-inline-flex p-5 align-items-end">
     <div class="container my-5">
-        <div class="row justify-content-center text-center">
-            <h3> Live Machine Status</h3>
+        <div class="row ">
+            {% if user_id %}
+            <h3 style="text-align: center;"> Live Machine Status</h3>
           <table>
             <thead>
                 <tr>
@@ -40,16 +41,21 @@
           <br>
 
           <div class="row justify-content-center">
-<br>
+            <br>
 
             <div class="col-3">
                 <a class="btn btn-secondary" href="{{url_for('add_machine')}}"> Add a Machine</a>          </div>
 
             </div>
         </div>
-    </div>       
+    </div>    
+    </main>
+    {% else %}
+    <p> You must be logged in to view this page.</p>
+            <div class="col-4">
+            <a class="btn btn-primary" href="{{url_for('login')}}"> Log In</a>   
 </main>
-
+{% endif %}
 <script>
     function confirmDelete() {
         return confirm("Are you sure you want to delete this machine? This CANNOT be undone.");

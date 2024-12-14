@@ -164,7 +164,7 @@ table, th, td{
 }
 
 /* Fix label color */
-label.a {
+label.c {
     color: white !important;  /* Keep label color white */
     padding: 3px !important;
     display: inline-block !important;

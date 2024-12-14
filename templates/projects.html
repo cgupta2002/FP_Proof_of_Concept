@@ -4,6 +4,7 @@
 <main class="d-inline-flex p-5 align-items-end">
     <div class="container">
         <div class="row">
+            {% if user_id %}
             {% for project in projects %}
             <div class="col-md-3 mb-4">
                 <a href="{{ url_for('project', project_id=project['project_id']) }}" class="text-decoration-none text-dark">
@@ -33,6 +34,13 @@
             {% endfor %}
         </div>
     </div>
+    
 </main>
+{% else %}
+    <p> You must be logged in to view this page.</p>
+            <div class="col-4">
+            <a class="btn btn-primary" href="{{url_for('login')}}"> Log In</a>   
+</main>
+{% endif %}
 
 {% endblock %}
