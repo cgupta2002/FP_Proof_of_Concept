@@ -20,12 +20,12 @@
             </thead>
             <tbody>
                 {% for machine in machines %}
-                    <tr><td>{{machine['machine_id']}}</td>
+                    <tr><td> <a href="{{url_for('alert', machine_id=machine['machine_id'])}}"> {{machine['machine_id']}} </a></td>
                         <td>{{machine['name']}}</td>
                         <td>{{machine['type']}}</td>
                         <td>{{machine['status']}}</td>
                         <td>{{machine['last_update']}}</td>
-                        <td>{% if machine['notes']%}
+                        <td>{% if machine['notes'] %}
                                 {{machine['notes']}}
                             {% else %}
                             -

@@ -22,8 +22,8 @@
                             <b style="color:green;"> Online</b>
                             {% elif ds['status'] == 'Offline' %}
                             <b style="color:red;"> Offline</b>
-                            {% elif ds['status'] == 'Offline' %}
-                            <b style="color:gold;"> At Risk</b>
+                            {% elif ds['status'] == 'Delayed/Errors' %}
+                            <b style="color:gold;"> Delayed/Errors</b>
                             {% else %}
                             <b style="color:gray;"> {{ds['status']}}</b>
                             {% endif %}

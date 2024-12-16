@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %} {{machine['name']}} Details{% endblock %}
+{% block content%}
+<main class="d-inline-flex p-5 align-items-end">
+    <div class="container">
+        <div class="card col-6">
+            <div class="card-body">
+                <h2 class="card-title">{{ machine['name'] }}</h2>
+                <p class="card-text"><strong>Machine ID:</strong> {{ machine['machine_id'] }}</p>
+                <p class="card-text"><strong>Machine Type:</strong> {{machine['type']}}</p>
+                <p class="card-text"><strong>Status:</strong> {{machine['status']}}</p>
+                <p class="card-text"><strong>Notes:</strong> {{ machine['notes'] }}</p>
+                <p class="card-text"><strong>Last Update:</strong> {{ machine['last_update'] }}
+            </div>
+            {% if history %}
+            <div class="card-body">
+                <strong>Machine History:</strong>
+                <table>
+                    <tr>
+                        <th>Status</th>
+                        <th> Notes</th>
+                        <th> Date</th>
+                    </tr>
+                    
+                    {% for row in history %}
+                    <tr>
+                        <td> {{row[0]}}</td>
+                        <td> {{row[1]}}</td>
+                        <td> {{row[2]}}</td>
+                    </tr>
+
+
+                    {% endfor %}
+                </table>
+                {% endif %}
+
+            </div>
+        </div>
+        <div>
+            <br>
+            <br>
+            <a href="{{ url_for('alerts') }}" class="btn btn-secondary">Back to Alert List</a>
+        </div>
+
+           
+    </div>
+</main>
+
+{% endblock %}

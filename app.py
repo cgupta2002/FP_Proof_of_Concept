@@ -6,6 +6,8 @@ from machines import Machine
 from unifiedData import DataStream
 import os
 from datetime import datetime, date
+import sqlite3
+import ast
 
 app = Flask(__name__)
 app.secret_key = '09safkj3784hjfrk9'
@@ -35,6 +37,29 @@ def alerts():
     user = User.getUserByID(user_id)
     machines = Machine.getAllMachines()    
     return render_template('alerts.html', user=user, user_id=user_id, machines=machines)
+
+@app.route('/alerts/<machine_id>')
+def alert(machine_id=None):
+    user_id = session.get('user_id')
+    user = User.getUserByID(user_id)
+    conn = sqlite3.connect('db_path.db')
+    machine = Machine.getMachine(machine_id)
+    cursor = conn.cursor()
+    cursor.execute('SELECT history FROM machines where machine_id=?',(machine_id,))
+    result = cursor.fetchone()
+    if result and result[0]:  
+        history_str = result[0]
+        try:
+            history = ast.literal_eval(history_str)
+            print(f"Extracted history: {history}")
+        except (ValueError, SyntaxError) as e:
+            print(f"Error parsing history: {e}")
+            history = []
+    else:
+        print("No history found for the specified machine.")
+        history = []
+    conn.close()
+    return render_template('alert.html', user=user, user_id=user_id, machine=machine, history=history)
 
 @app.route('/alerts/add', methods=['GET', 'POST'])
 def add_machine():
