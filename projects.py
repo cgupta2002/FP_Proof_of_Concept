@@ -128,22 +128,22 @@ class Project:
         conn.close()
 
     @classmethod
-    def addProject(cls, project_id, name, poc_name, poc_email, poc_phone, location, est_length, curr_length, budget, curr_exp, start_date, proj_end, status):
+    def addProject(cls, project_id, name, poc_name, poc_email, poc_phone, location, est_length, budget, curr_exp, start_date, proj_end, status):
         conn = None
         conn = sqlite3.connect( db_path)
-        sql='INSERT INTO projects ( project_id, name, poc_name, poc_email, poc_phone, location, est_length, curr_length, budget, curr_exp, start_date, proj_end, status) values (?,?,?,?,?,?,?,?,?,?,?,?,?)'
+        sql='INSERT INTO projects ( project_id, name, poc_name, poc_email, poc_phone, location, est_length, budget, curr_exp, start_date, proj_end, status) values (?,?,?,?,?,?,?,?,?,?,?,?)'
         cur = conn.cursor()
-        cur.execute(sql, ( project_id, name, poc_name, poc_email, poc_phone, location, est_length, curr_length, budget, curr_exp, start_date, proj_end,status, ))
+        cur.execute(sql, ( project_id, name, poc_name, poc_email, poc_phone, location, est_length, budget, curr_exp, start_date, proj_end,status, ))
         conn.commit()
         if conn:
             conn.close()
 
     @classmethod
-    def updateProject(cls,project_id, name, poc_name, poc_email, poc_phone, location, est_length, curr_length, budget, curr_exp, start_date, proj_end,status):
+    def updateProject(cls,project_id, name, poc_name, poc_email, poc_phone, location, est_length, budget, curr_exp, start_date, proj_end,status):
         conn = sqlite3.connect(db_path)
-        sql='UPDATE projects SET name, poc_name, poc_email, poc_phone, location, est_length, curr_length, budget, curr_exp, start_date, proj_end,status WHERE project_id = ?'
+        sql='UPDATE projects SET name, poc_name, poc_email, poc_phone, location, est_length, budget, curr_exp, start_date, proj_end,status WHERE project_id = ?'
         cur = conn.cursor()
-        cur.execute(sql, (name, poc_name, poc_email, poc_phone, location, est_length, curr_length, budget, curr_exp, start_date, proj_end,status, project_id,))
+        cur.execute(sql, (name, poc_name, poc_email, poc_phone, location, est_length, budget, curr_exp, start_date, proj_end,status, project_id,))
         conn.commit()
         conn.close()
 
@@ -191,7 +191,7 @@ class Project:
     def createProjectTable(cls):
         conn = sqlite3.connect(db_path)
         cur = conn.cursor()
-        cur.execute('''CREATE TABLE projects (project_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL,poc_name TEXT NOT NULL,poc_email TEXT NOT NULL,poc_phone TEXT NOT NULL,location TEXT NOT NULL,est_length TEXT NOT NULL,curr_length TEXT NOT NULL,budget FLOAT NOT NULL,curr_exp FLOAT NOT NULL,start_date TEXT NOT NULL,proj_end TEXT NOT NULL, status TEXT NOT NULL);''')
+        cur.execute('''CREATE TABLE projects (project_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL,poc_name TEXT NOT NULL,poc_email TEXT NOT NULL,poc_phone TEXT NOT NULL,location TEXT NOT NULL,est_length TEXT NOT NULL,curr_length TEXT,budget FLOAT NOT NULL,curr_exp FLOAT NOT NULL,start_date TEXT NOT NULL,proj_end TEXT NOT NULL, status TEXT NOT NULL);''')
         conn.commit()
         conn.close()
 

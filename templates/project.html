@@ -3,22 +3,23 @@
 {% block content%}
 <main class="d-inline-flex p-5 align-items-end">
     <div class="container">
-        <div class="card col-6">
+        <div class="card col-10">
             <div class="card-body">
                 <h2 class="card-title">{{ project['name'] }}</h2>
                 <p class="card-text"><strong>Location:</strong> {{ project['location'] }}</p>
                 <p class="card-text"><strong>Start Date:</strong> {{project['start_date']}}</p>
                 <p class="card-text"><strong>Estimated End Date:</strong> {{project['proj_end']}}</p>
-                <p class="card-text"><strong>Budget:</strong> ${{ project['budget'] }}</p>
-                <p class="card-text"><strong>Current Expenditures:</strong> ${{ project['curr_exp'] }}
+                <p class="card-text"><strong>Budget:</strong> ${{ '{:,.2f}'.format(project['budget']) }}</p>
+                <p class="card-text"><strong>Current Expenditures:</strong> ${{ '{:,.2f}'.format(project['curr_exp']) }}</p>
+                <p class="card-text"><strong>Budget Difference:</strong>
                 {% if budget_difference > 0 %}
-                <b style="color:green;"> $({{budget_difference}})</b>
+                    <b style="color:green;"> ${{ '{:,.2f}'.format(budget_difference) }}</b>
                 {% elif budget_difference == 0 %}
-                <b style="color:yellow;"> $({{budget_difference}})</b>
+                    <b style="color:yellow;"> ${{ '{:,.2f}'.format(budget_difference) }}</b>
                 {% else %}
-                <b style="color:red;"> $({{budget_difference}})</b></p>
-
+                    <b style="color:red;"> ${{ '{:,.2f}'.format(budget_difference) }}</b>
                 {% endif %}
+                </p>
             </div>
             <div class="card-body">
                 <strong>Point of Contact Information:</strong>
@@ -29,7 +30,7 @@
             </div>
 
             <div class="card-body">
-                <h1> Insert Tableau Data Here</h1>
+                <img src="{{ url_for('static', filename='images/projects/' + project['project_id']|string + '.png') }}" style="height:600px; width: relative;">
             </div>
         </div>
         <div class="mt-4">

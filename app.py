@@ -176,6 +176,30 @@ def project(project_id=None):
     budget_difference = proj['budget'] - proj['curr_exp']
     return render_template('project.html', user=user, user_id=user_id, project=proj, budget_difference=budget_difference)
 
+@app.route('/projects/add', methods=['GET', 'POST'])
+def add_project():
+    user_id = session.get('user_id')
+    user = User.getUserByID(user_id)
+    if request.method == 'GET':
+        return render_template('add_project.html', user=user, user_id=user_id, status='ADD')
+    elif request.method == 'POST':
+        projects = Project.getAllProjects()
+        project_id = (projects[-1]['project_id']) +1
+        name = request.form['name']
+        location = request.form['location']
+        est_length = request.form['est_length']
+        start_date = request.form['start_date']
+        proj_end = request.form['proj_end']
+        budget = request.form['budget']
+        curr_exp = request.form['curr_exp']
+        poc_name = request.form['poc_name']
+        poc_email = request.form['poc_email']
+        poc_phone = request.form['poc_phone']
+        status = request.form.get('status')
+        Project.addProject(project_id,name, poc_name,poc_email,poc_phone,location,est_length,budget,curr_exp,start_date,proj_end,status)
+        return redirect(url_for('project', project_id = project_id))
+
+
 @app.route('/profile')
 def profile():
     user_id = session.get('user_id')

@@ -8,7 +8,6 @@
             {% if user_id %}
             {% for ds in datastreams %}
             <div class="col-md-3 mb-4">
-                <a href="{{ url_for('datastream',datastream_id = ds['datastream_id']) }}" class="text-decoration-none text-dark">
                 <div class="card h-100">
                     
                     <div class="card-body">
